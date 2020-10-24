@@ -13,12 +13,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run deployment process
-        run: exit 1
+        run: exit 0
 
       - name: Notify deployment
         uses: 8398a7/action-slack@v3.8.0
         with:
           status: ${{ job.status }}
+          fields: repo,message,commit,author,job,took,eventName,ref,action,workflow
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

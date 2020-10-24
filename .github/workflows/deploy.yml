@@ -18,7 +18,7 @@ jobs:
       - name: Notify deployment
         uses: 8398a7/action-slack@v3.8.0
         with:
-          author: foobarサービスのデプロイ処理結果
+          author_name: foobarサービスのデプロイ処理結果
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,job,took,eventName,ref,workflow
         env:

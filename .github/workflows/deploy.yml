@@ -1,0 +1,27 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run deployment process
+        run: exit 1
+
+      - name: Notify deployment
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          author_name: foobarサービスのデプロイ処理結果
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,job,took,eventName,ref,workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
